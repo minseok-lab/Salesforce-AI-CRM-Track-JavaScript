@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <p>This is a test page for Live Server.</p>
+
+    <script>
+        for (let i = 0; i < 10; i++) {
+            var leak = "I'm available outside the loop!";
+        }
+
+        console.log(leak); // This will log: "I'm available outside the loop!"
+
+        function myFunc() {
+            var functionScoped = "I'm available inside the function scoped!";
+            console.log(functionScoped); // This will log: "I'm function scoped!"
+        }
+        myFunc();
+        console.log(functionScoped); // This will throw a ReferenceError
+    </script>
+</body>
+</html>

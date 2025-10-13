@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // using `let`
+    let x = "global";
+
+    if (x === "global") {
+    let x = "block-scoped";
+
+    console.log(x);
+    // expected output: block-scoped
+    }
+
+    console.log(x);
+    // expected output: global
+
+    // using `var`
+    var y = "global";
+
+    if (y === "global") {
+    var  y= "block-scoped";
+
+    console.log(y);
+    // expected output: block-scoped
+    }
+
+    console.log(y);
+    // expected output: block-scoped
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .opening {
+            background-color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class = "box open">
+        This is box
+    </div>
+</body>
+<script>
+    // grab our div with class box
+    const box = document.querySelector(".box");
+    // listen for a click event
+    box.addEventListener("click", function() {
+        // toggle the class opening on the div
+        this.classList.toggle("opening");
+        setTimeout(() => {
+            // try to toggle again the class
+            this.classList.toggle("opening");
+        },500);
+    });
+</script>
+</html>
