@@ -1,0 +1,68 @@
+<!-- naverLoginPage.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버: 회원가입</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="login-form" name="login-form" method="GET" action="join.jsp">
+        <h1>NAVER</h1>
+        <p>실명 인증된 아이디로 가입 ✅</p>
+        <section class="form-group">
+            <div class="form-row id">
+                <span class="left-text">👤 아이디</span>
+                <span class="right-text">@naver.com</span>
+            </div>
+            <div class="form-row">
+                <span class="left-text">🔒 비밀번호</span>
+            </div>
+            <div class="form-row">
+                <span class="left-text">✉️ [선택] 이메일주소 (비밀번호 찾기 등 본인 확인용)</span>
+            </div>
+        </section>
+            
+        <section class="form-group">
+            <div class="form-row">
+                <span class="left-text">👤 이름</span>
+            </div>
+            <div class="form-row">
+                <span class="left-text">🪪 생년월일 8자리</span>
+            </div>
+            <div class="form-row">
+                <ul class="sex_list" id="listIdentityGender">
+                    <li class="radio_item">
+                        <input type="radio" id="identityGender1" name="identityGender" value="M" class="blind">
+                        <label for="identityGender1">남자</label>
+                    </li>
+                    <li class="radio_item">
+                        <input type="radio" id="identityGender2" name="identityGender" value="F" class="blind">
+                        <label for="identityGender2">여자</label>
+                    </li>
+                    <li class="radio_item">
+                        <input type="radio" id="noneSelected" name="noneSelected" value="F" class="blind">
+                        <label for="noneSelected">선택안함</label>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="form-group">
+            <div class="form-row">
+                <span class="left-text">📱 휴대전화번호</span>
+            </div>
+        </section>
+
+        <section class="form-group">
+            <div class="form-row">
+                <span class="terms" t="text-weight: bold;">✅ <strong style="color: #2db400;">[필수]</strong> 인증 약관 전체동의</span>
+            </div>
+        </section>
+
+        <input type="submit" value="가입하기">
+	</form>
+</body>
+</html>
