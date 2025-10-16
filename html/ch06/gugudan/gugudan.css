@@ -1,0 +1,39 @@
+* { margin:0; padding:0 }
+body {
+    font-family: "맑은 고딕", "돋움";
+    font-size: 0.75em;
+    color: #333;
+}
+.tbl-ex {
+    width: 80%;
+    height: auto;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 2px	solid #333;
+    border-bottom: 2px solid #333;
+    border-right: 1px solid #333;
+    border-left: 1px solid #333;
+    border-collapse: collapse;
+}
+.tbl-ex th, .tbl-ex td {
+    padding: 12px 8px;
+}
+th {
+    border-bottom: 2px solid #333;
+    border-right: 1px solid #333;
+    border-left: 1px solid #333;
+    text-align: center;
+    background-color: #999;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+td {
+    border: 1px solid #333;
+    border-right: 1px solid #333;
+    border-left: 1px solid #333;
+    border-top-style: dotted;
+    border-bottom-style: dotted;
+    text-align: center;
+}

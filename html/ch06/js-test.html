@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-test</title>
+    <script type="text/javascript">
+        var number = 5;
+        var anotherNumber = new Number(5);
+        var pi = 3.14;
+        var string = "Hello, I'm a string!";
+        var anotherString = new String( "Hello, I'm a string!" );
+        var used = false; 
+
+        console.log( typeof number);
+        console.log( typeof anotherNumber );
+        console.log( typeof pi );
+        console.log( typeof anotherNumber + ":" + ( anotherNumber + 10 ) );
+        console.log( ( ( number +  pi ) / 10 ).toFixed(3) );
+        console.log( typeof string );
+        console.log( typeof anotherString );
+        console.log( typeof used );
+
+        /*
+         * alert( typeof number);
+         * alert( typeof anotherNumber );
+         * alert( typeof pi );
+         * alert( typeof string );
+         * alert( typeof anotherString );
+         * alert( typeof used );
+         */
+
+        var myVar1, myVar2, myVar3 = null;
+        console.log( typeof myVar1 );
+        console.log( myVar1 + ", " + myVar2 );
+        console.log( myVar1 == myVar2 );
+        console.log( myVar1 === myVar2 );
+
+        v = "This is Test";
+        console.log( v );
+
+        v = 20;
+        console.log( v );
+
+        function func(){
+		    v1 = "hello javascript";
+        }
+        func();
+        console.log( v1 );
+
+        for ( var i = 0; i < 3; i++ ) {
+            document.write( i + "<br>" );
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+
+var escaped = escape("<h3>Here's a headline!</h3>");
+console.log( escaped );
+
+var url = "http://mysite.com/?stuff=\"홍길동";//!&bar=";
+/*
+홍길동";//
+*/
+var encodedURL = encodeURI(url);
+var decodedURL = decodeURI(encodedURL);
+
+console.log(encodedURL);
+console.log(decodedURL);
+</script>
+</head>
+<body>
+
+</body>
+</html>
