@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onmousedown, onmouseup, onclick</title>
+    <script type="text/javascript" src="ex23.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "맑은 고딕";
+            font-size: 1em;
+            color: #333;
+            margin: 50px;
+        }
+        div {
+            background-color: #D94A38;
+            width: 90px;
+            height: 20px;
+            padding: 40px;
+        }
+        div:active {
+            background-color: #1ec5e5;
+        }
+    </style>
+</head>
+<body onload="onLoad()">
+    <div onmousedown="mDown(this)" onmouseup="mUp(this)">
+        클릭하세요!
+    </div>
+</body>
+</html>
