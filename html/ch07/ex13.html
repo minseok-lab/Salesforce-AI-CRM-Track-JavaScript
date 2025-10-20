@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("li[class]").forEach(function (item) {
+                item.style.color = "deepskyblue";
+            })
+            document.querySelectorAll("li[title='second']").forEach(function (item) {
+                item.style.color = "red";
+            })
+        })
+
+        // $(function () {
+        //     // ex12
+        //     $("[class]").css("color", "blue");
+        //     // ex13
+        //     $("[title='second']").css("color", "red");
+        // });
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li class="blue"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="red" title="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li title="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li title="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+    </ul>
+</body>
+
+</html>

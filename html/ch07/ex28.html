@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실습예제 28번</title>
+	<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+	<script type="text/javascript">
+		// $(function () {
+		// 	$("h1").insertBefore("p");
+		// });
+		
+		document.addEventListener("DOMContentLoaded", function () {
+			const h1 = document.querySelector("h1");
+			const p = document.querySelector("p");
+
+			p.insertAdjacentElement("beforebegin", h1);
+			// p.parentNode.insertBefore(h1, p);
+		});
+
+	</script>
+</head>
+
+<body>
+	<p>내용입니다.</p>
+	<h1>타이틀입니다.</h1>
+</body>
+
+</html>

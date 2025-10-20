@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 11번</title>
+    <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("li:first-child").forEach(function(item) {
+                item.style.color = "red";
+            })
+            document.querySelectorAll("li:last-child").forEach(function(item) {
+                item.style.color = "deepskyblue";
+            })
+        })
+        // $(function () {
+        //     $("li:first-child").css("color", "red");
+        //     $("li:last-child").css("color", "deepskyblue");
+        // });
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+    </ul>
+    <ul>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+    </ul>
+</body>
+
+</html>

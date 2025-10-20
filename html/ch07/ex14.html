@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 14번</title>
+    <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("li:not(.blue)").forEach(function (item) {
+                item.style.color = "red";
+            })
+            document.querySelectorAll("li:not(.normal)").forEach(function (item) {
+                item.style.fontWeight = "bold";
+            })
+        })
+
+        // $(function () {
+        //     $("li[class!='blue']").css("color", "red");
+        //     $("li[class!=normal]").css("font-weight", "bold");
+        // });
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li class="blue"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="normal"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+    </ul>
+</body>
+
+</html>

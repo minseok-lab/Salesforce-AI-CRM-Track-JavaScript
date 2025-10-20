@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 12번</title>
+    <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(){
+            document.querySelectorAll("li[id]").forEach(function(item){
+                item.style.color = "red";
+            })
+            document.querySelectorAll("li[id=third]").forEach(function(item){
+                item.style.color = "green";
+            })
+            document.querySelectorAll("li[class]").forEach(function(item){
+                item.style.color = "deepskyblue";
+            })
+        })
+
+        // $(function(){
+        //     $("li[id]").css("color","red");
+        //     $("li[id=third]").css("color","green");
+        //     $("li[class]").css("color","deepskyblue");
+        // })
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+    </ul>
+</body>
+
+</html>

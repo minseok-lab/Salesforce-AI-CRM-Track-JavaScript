@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px; 
+    }
+    #user {
+      width: 170px;
+      margin: 0px auto;
+    }
+    .block-label {
+      display: block;
+    }
+    .form-error {
+      color: red;
+    }
+    form {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous">
+  </script>
+  <script>
+    $(document).ready(function (){
+
+      // submit 버튼 이벤트처리기
+      $("#join-form").submit(function (e){
+        // Validation Check
+        // 모든 필드 값이 입력 되었는지 확인 후
+        // 1. 이름 : 대문자로 바꾸기
+        // 2. 이메일 :@ 와 . 을 포함하고 있는가 
+        // 3. 비밀번호 : 8자이상, 비밀번호 두가지가 같은가
+
+        // 0. submit 버튼 이벤트 동작 안하게
+        e.preventDefault();
+
+        // 1. 이름 대문자로 바꾸기
+        var name = $("#name").val();
+        if (name.trim() === "") {
+          $("#checkname-msg").text("이름을 입력해주세요.");
+          $("#name").focus();
+          return false;
+        }
+        $("#name").val(name.toUpperCase());
+        $("#checkname-msg").text("");
+
+        // 2. 이메일 @와 .를 포함하고 있는가
+        var email = $("#email").val();
+        if (email.trim() === "") {
+          $("#checkemail-msg").text("이메일을 입력해주세요.");
+          $("#email").focus();
+          return false;
+        }
+        if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+          $("#checkemail-msg").text("유효한 이메일 형식이 아닙니다.");
+          $("#email").focus();
+          return false;
+        }
+        $("#checkemail-msg").text("");
+
+        // 3. 비밀번호 8자이상, 비밀번호 두가지가 같은가
+        var password1 = $("input[name='password1']").val();
+        var password2 = $("input[name='password2']").val();
+        
+        if (password1.trim() === "" || password2.trim() === "") {
+          $("#password-msg").text("비밀번호를 입력해주세요.");
+          $("input[name='password1']").focus();
+          return false;
+        }
+        if (password1.length < 8) {
+          $("#password-msg").text("비밀번호는 8자 이상이어야 합니다.");
+          $("input[name='password1']").focus();
+          return false;
+        }
+        if (password1 !== password2) {
+          $("#password-msg").text("비밀번호가 일치하지 않습니다.");
+          $("input[name='password1']").focus();
+          return false;
+        }
+        $("#password-msg").text("");
+
+        // 모든 검증 통과
+        alert("가입이 완료되었습니다.");
+        return true;
+        
+      });//submit
+
+    });//ready
+  </script>
+</head>
+<body>
+
+  <div id="user">
+
+    <form id="join-form" name="joinForm" method="post" action="/mysite/user">
+      <input type="hidden" name="a" value="join" />
+      
+      <label class="block-label" for="name">이름</label>
+      <input id="name" name="name" type="text" value="" />
+      <p id="checkname-msg" class="form-error">&nbsp;</p>
+
+      <label class="block-label" for="email">이메일</label>
+      <input id="email" name="email" type="text" value="" />
+      <p id="checkemail-msg" class="form-error">&nbsp;</p>
+
+      <label class="block-label">패스워드</label>
+      <input name="password1" type="password" value="" />
+      <input name="password2" type="password" value="" />
+      
+      <p id="password-msg" class="form-error">&nbsp;</p>
+
+      <fieldset>
+        <legend>성별</legend>
+        <label>여</label> <input type="radio" name="gender" value="female" checked="checked">
+        <label>남</label> <input type="radio" name="gender" value="male">
+      </fieldset>
+      
+      <input type="submit" value="가입하기">
+      
+    </form>
+    
+  </div><!-- /user -->
+		
+</body>
+</html>

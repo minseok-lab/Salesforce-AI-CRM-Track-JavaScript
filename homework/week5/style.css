@@ -1,117 +1,120 @@
 /* style.css */
 
-* {margin:0; padding:0;}
-		body {
-			font-family: "sans-serif", "맑은 고딕";
-			font-size: 12px;
-			color: #ccc;
-		}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "sans-serif", "맑은 고딕";
+  font-size: 12px;
+  color: #ccc;
+}
 
-        h1 {
-            text-align: left;
-            margin-top: 50px;
-            font-size: 36px;
-            color: #2db400;
-            font-weight: 900;
-        }
+h1 {
+  text-align: left;
+  margin-top: 50px;
+  font-size: 36px;
+  color: #2db400;
+  font-weight: 900;
+}
 
-        p {
-            text-align: right;
-            margin-left: auto;
-			margin-right: auto;
-            width: 500px;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: #666;
-        }
+p {
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
 
-		#login-form {
-			width: 500px;
-			margin-top: 30px;
-			margin-left: auto;
-			margin-right: auto;
-			border-radius: 10px;
-		}
+#login-form {
+  width: 500px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
 
-        #join-form {
-            width: 500px;
-            margin: 30px auto;
-        }
+#join-form {
+  width: 500px;
+  margin: 30px auto;
+}
 
-        .form-group {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
+.form-group {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
 
-        .form-row {
-            width: auto;
-            min-height: 50px;
-            padding: 0 20px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            color: #999;
-            box-sizing: border-box;
-        }
+.form-row {
+  width: auto;
+  min-height: 50px;
+  padding: 0 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: #999;
+  box-sizing: border-box;
+}
 
-        .form-row:not(:last-child) {
-            border-bottom: 1px solid #eee;
-        }
+.form-row:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
 
-        .form-row.id {
-            justify-content: space-between;
-        }
+.form-row.id {
+  justify-content: space-between;
+}
 
-        .sex_list {
-            width: 100%;
-            display: flex;
-            list-style: none;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #999;
-            border-radius: 5px;
-            overflow: hidden;
-        }
+.sex_list {
+  width: 100%;
+  display: flex;
+  list-style: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  overflow: hidden;
+}
 
-        .radio_item {
-            flex: 1;
-            text-align: center;
-        }
+.radio_item {
+  flex: 1;
+  text-align: center;
+}
 
-        .radio_item:not(:last-child) {
-            border-right: 1px solid #ccc;
-        }
+.radio_item:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
 
-        .blind {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-        }
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
 
-        .sex_list label {
-            display: block;
-            padding: 5px 0;
-            color: #999;
-        }
+.sex_list label {
+  display: block;
+  padding: 5px 0;
+  color: #999;
+}
 
-        .terms {
-            font-weight: bold;
-        }
+.terms {
+  font-weight: bold;
+}
 
-		input[type="submit"] {
-			display: block;
-			width: 500px;
-            height: 50px;
-            background-color: #2db400;
-            color: #fff;
-            font-size: 16px;
-            border-radius: 10px;
-            border: none;
-			margin: 10px auto;
-		}
+input[type="submit"] {
+  display: block;
+  width: 500px;
+  height: 50px;
+  background-color: #2db400;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px auto;
+}

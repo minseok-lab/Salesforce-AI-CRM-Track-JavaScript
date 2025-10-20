@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px; 
+    }
+    #user {
+      width: 170px;
+      margin: 0px auto;
+    }
+    .block-label {
+      display: block;
+    }
+    .form-error {
+      color: red;
+    }
+    form {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const joinForm = document.getElementById('join-form');
+      
+      joinForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // 1. 이름 대문자로 바꾸기
+        const nameInput = document.getElementById('name');
+        const checkNameMsg = document.getElementById('checkname-msg');
+        const name = nameInput.value;
+
+        if (name.trim() === "") {
+          checkNameMsg.textContent = "이름을 입력해주세요.";
+          nameInput.focus();
+          return false;
+        }
+        nameInput.value = name.toUpperCase();
+        checkNameMsg.textContent = "";
+
+        // 2. 이메일 @와 .를 포함하고 있는가
+        const emailInput = document.getElementById('email');
+        const checkEmailMsg = document.getElementById('checkemail-msg');
+        const email = emailInput.value;
+
+        if (email.trim() === "") {
+          checkEmailMsg.textContent = "이메일을 입력해주세요.";
+          emailInput.focus();
+          return false;
+        }
+        if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+          checkEmailMsg.textContent = "유효한 이메일 형식이 아닙니다.";
+          emailInput.focus();
+          return false;
+        }
+        checkEmailMsg.textContent = "";
+
+        // 3. 비밀번호 8자이상, 비밀번호 두가지가 같은가
+        const password1Input = document.querySelector('input[name="password1"]');
+        const password2Input = document.querySelector('input[name="password2"]');
+        const passwordMsg = document.getElementById('password-msg');
+        const password1 = password1Input.value;
+        const password2 = password2Input.value;
+
+        if (password1.trim() === "" || password2.trim() === "") {
+          passwordMsg.textContent = "비밀번호를 입력해주세요.";
+          password1Input.focus();
+          return false;
+        }
+        if (password1.length < 8) {
+          passwordMsg.textContent = "비밀번호는 8자 이상이어야 합니다.";
+          password1Input.focus();
+          return false;
+        }
+        if (password1 !== password2) {
+          passwordMsg.textContent = "비밀번호가 일치하지 않습니다.";
+          password2Input.focus();
+          return false;
+        }
+        passwordMsg.textContent = "";
+
+        // 모든 검증 통과
+        alert("가입이 완료되었습니다.");
+        return true;
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <div id="user">
+
+    <form id="join-form" name="joinForm" method="post" action="/mysite/user">
+      <input type="hidden" name="a" value="join" />
+      
+      <label class="block-label" for="name">이름</label>
+      <input id="name" name="name" type="text" value="" />
+      <p id="checkname-msg" class="form-error">&nbsp;</p>
+
+      <label class="block-label" for="email">이메일</label>
+      <input id="email" name="email" type="text" value="" />
+      <p id="checkemail-msg" class="form-error">&nbsp;</p>
+
+      <label class="block-label">패스워드</label>
+      <input name="password1" type="password" value="" />
+      <input name="password2" type="password" value="" />
+      
+      <p id="password-msg" class="form-error">&nbsp;</p>
+
+      <fieldset>
+        <legend>성별</legend>
+        <label>여</label> <input type="radio" name="gender" value="female" checked="checked">
+        <label>남</label> <input type="radio" name="gender" value="male">
+      </fieldset>
+      
+      <input type="submit" value="가입하기">
+      
+    </form>
+    
+  </div><!-- /user -->
+		
+</body>
+</html>

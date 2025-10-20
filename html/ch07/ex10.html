@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 10</title>
+    <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("#second + li").forEach(function(item){
+                item.style.color = "red";
+            })
+            document.querySelectorAll("#second + li + li").forEach(function(item){
+                item.style.color = "blue";
+            })
+        });
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     document.querySelector("#second + li").style.color = "red";
+        //     document.querySelector("#second + li + li").style.color = "blue";
+        // });
+
+        // $(function () {
+        //     $("#second + li").css("color", "red");
+        //     $("#second ++ li").css("color", "blue");
+        //     // $("#second + li + li").css("color", "red");
+        // });
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실습예제 26 ~ 27번</title>
+	<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			// 요소들을 각각 변수에 저장
+			const p1_strong = $("#p1 strong");
+			const p2_strong = $("#p2 strong");
+
+			p2_strong.prependTo("#p1");
+
+			p1_strong.appendTo("#p2");
+		});  
+	</script>
+</head>
+<body>
+	<p id="p1">EFGHIJKLMNOPQRSTUV<strong>WXYZ</strong></p>
+	<p id="p2"><strong>ABCD</strong>efghijklmnopqrstuv</p>
+</body>
+</html>

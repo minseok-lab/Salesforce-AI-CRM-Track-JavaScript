@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="joinform.css">
+
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous">
+    </script>
+  <script src="valuedID.js"></script>
+  <script src="valuedEmail.js"></script>
+  <script src="valuedPW.js"></script>
+  <script src="checkValid.js"></script>
+</head>
+
+<body>
+
+  <div id="user">
+
+    <form id="join-form" name="joinForm" method="post" action="/mysite/user">
+      <h1>NAVER</h1>
+      <section class="information">
+        <input type="hidden" name="a" value="join" />
+
+        <label class="block-label" for="name">이름</label>
+        <input id="name" name="name" type="text" value="" />
+        <p id="checkname-msg" class="form-error">&nbsp;</p>
+
+        <label class="block-label" for="email">이메일</label>
+        <input id="email" name="email" type="text" value="" />
+        <p id="checkemail-msg" class="form-error">&nbsp;</p>
+
+        <label class="block-label">패스워드</label>
+        <input id="password1" name="password1" type="text" value="" />
+        <label class="block-label">패스워드 확인</label>
+        <input id="password2" name="password2" type="text" value="" />
+
+        <p id="password-msg" class="form-error">&nbsp;</p>
+
+        <div class="form-row gender-row">
+          <legend>성별</legend>
+            <ul class="sex_list">
+              <li class="radio_item">
+                <input type="radio" id="gender_male" name="gender" value="male" class="blind" checked="checked">
+                <label for="gender_male">남</label>
+              </li>
+              <li class="radio_item">
+                <input type="radio" id="gender_female" name="gender" value="female" class="blind">
+                <label for="gender_female">여</label>
+              </li>
+            </ul>
+          </div>
+      </section>
+
+      <input type="submit" value="가입하기">
+
+    </form>
+
+  </div><!-- /user -->
+
+</body>
+
+</html>

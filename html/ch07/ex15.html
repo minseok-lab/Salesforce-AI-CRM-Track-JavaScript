@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 15번</title>
+    <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+        // $(function () {
+        //     $("li:first").css("color", "red");
+        //     $("li:last").css("color", "deepskyblue");
+        // });
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     document.querySelectorAll("li:first-child").forEach(function (item) {
+        //         item.style.color = "red";
+        //     })
+        //     document.querySelectorAll("li:last-child").forEach(function (item) {
+        //         item.style.color = "deepskyblue";
+        //     })
+        // });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const items = document.querySelectorAll("li");
+
+            const first = items[0];
+            const last = items[items.length - 1];
+
+            if (first) first.style.color = "red";
+            if (last) last.style.color = "deepskyblue";
+        });
+
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+    </ul>
+</body>
+
+</html>
