@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "맑은 고딕";
+  font-size: 0.75em;
+  color: #333;
+}
+
+h1 {
+  width: 150px;
+  margin: 10px auto;
+}
+
+ul {
+  width: 150px;
+  margin: 20px auto 0 auto;
+  list-style-type: none;
+  border-top: 1px solid #bbb;
+}
+
+li {
+  width: 130;
+  padding: 10px;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  background-color: #fff;
+  border-color: #bbb;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+li.on {
+  background-color: deepskyblue;
+  color: #fff;
+}

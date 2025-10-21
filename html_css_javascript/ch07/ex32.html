@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실습예제 32번</title>
+	<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var content = $("p").text();
+			content = "변경 후";
+			$("p").replaceWith("<h3>" + content + "</h3>");
+		});  
+	</script>
+</head>
+
+<body>
+	<p>변경전</p>
+</body>
+
+</html>

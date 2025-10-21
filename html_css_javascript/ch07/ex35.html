@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실습예제 35</title>
+	<link rel="stylesheet" href="ex35.css">
+	<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+
+			// $("li").mouseover(function () {
+			// 	$(this).addClass("on");
+			// }).mouseout(function () {
+			// 	$(this).removeClass("on");
+			// });
+
+			$("li").on("click", function () {
+				$(this).addClass("on").siblings().removeClass("on");
+			});
+
+		});  
+	</script>
+</head>
+
+<body>
+	<h1>메뉴리스트</h1>
+
+	<ul>
+		<li>아이템1</li>
+		<li>아이템2</li>
+		<li>아이템3</li>
+		<li>아이템4</li>
+		<li>아이템5</li>
+	</ul>
+
+</body>
+
+</html>

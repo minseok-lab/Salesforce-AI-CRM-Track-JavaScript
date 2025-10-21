@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실습예제 3번</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$.ajax({
+				url: 'sample3.xml',
+				dataType: 'xml',
+				success: function (data) {
+					$("item", data).each(function () {
+						$("dl").append("<dt><a href='" + $("link", this).text() + "'>" + $("title", this).text() + "</a></dt><dd>" + $("description", this).text() + "</dd>");
+					});
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<dl></dl>
+</body>
+
+</html>

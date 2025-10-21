@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실습예제 31번</title>
+	<style type="text/css">
+		.wrap {
+			border: 1px solid red;
+		}
+	</style>
+	<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("p, strong").wrapAll("<div class='wrap'></div>");
+		});  
+	</script>
+</head>
+
+<body>
+	<strong>타이틀입니다.</strong>
+	<p>내용입니다.</p>
+</body>
+
+</html>

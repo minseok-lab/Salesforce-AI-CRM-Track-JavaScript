@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실습예제 33번</title>
+	<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+	<script type="text/javascript">
+		// $( function() {
+		// 	$( "li" ).eq( 2 ).remove();
+		// 	$( "li" ).eq( 3 ).remove();
+		// } );
+
+		document.addEventListener("DOMContentLoaded", function () {
+			const items = document.querySelectorAll("li");
+			items.forEach(function (item) {
+				if (item.textContent.includes("삭제할")) {
+					item.remove();
+				}
+			})
+		})
+	</script>
+</head>
+
+<body>
+
+	<ul>
+		<li>첫번째 아이템입니다.</li>
+		<li>두번째 아이템입니다.</li>
+		<li>삭제할 아이템입니다.</li>
+		<li>네번째 아이템입니다.</li>
+		<li>삭제할 아이템입니다.</li>
+		<li>다섯 번째 아이템입니다.</li>
+	</ul>
+
+</body>
+
+</html>

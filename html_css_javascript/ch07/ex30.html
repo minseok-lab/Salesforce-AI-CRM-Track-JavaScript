@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 30번</title>
+    <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+        // $(function () {
+        //     $(".d1").wrap("<h2></h2>");
+        //     $(".d2").wrap("<p></p>");
+        // });
+        document.addEventListener("DOMContentLoaded", function() {
+            const d1 = document.querySelectorAll(".d1");
+            const d2 = document.querySelectorAll(".d2");
+
+            // d1.forEach(function(item) {
+            //     elementToWrap = document.createElement("h2");
+            //     item.parentNode.insertBefore(elementToWrap, item);
+            //     elementToWrap.appendChild(item);
+            // })
+            // d2.forEach(function(item) {
+            //     elementToWrap = document.createElement("p");
+            //     item.parentNode.insertBefore(elementToWrap, item);
+            //     elementToWrap.appendChild(item);
+            // })
+
+            for (let i = 0; i < d1.length; i++) {
+                let elementToWrap = document.createElement("h2");
+                d1[i].parentNode.insertBefore(elementToWrap, d1[i]);
+                elementToWrap.appendChild(d1[i]);
+            }
+            for (let i = 0; i < d2.length; i++) {
+                let elementToWrap = document.createElement("p");
+                d2[i].parentNode.insertBefore(elementToWrap, d2[i]);
+                elementToWrap.appendChild(d2[i]);
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <em class="d1">1장</em>
+
+    <em class="d2">1-1 절</em>
+
+    <em class="d2">1-2 절</em>
+
+    <em class="d2">1-2 절</em>
+
+    <em class="d1">2장</em>
+
+    <em class="d2">2-1 절</em>
+
+    <em class="d2">2-2 절</em>
+
+    <em class="d2">2-2 절</em>
+</body>
+
+</html>

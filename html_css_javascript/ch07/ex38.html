@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실습예제 38번</title>
+	<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+	<script type="text/javascript">
+
+		var images = [
+			"국화:Chrysanthemum.jpg",
+			"사막:Desert.jpg",
+			"수국:Hydrangeas.jpg",
+			"해파리:Jellyfish.jpg",
+			"코알라:Koala.jpg",
+			"등대:Lighthouse.jpg",
+			"펭귄:Penguins.jpg",
+			"툴립:Tulips.jpg"
+		];
+
+		document.addEventListener("DOMContentLoaded", function () {
+			const imgTag = document.querySelector("img");
+
+			imgTag.addEventListener("dblclick", function () {
+				const randomIndex = Math.floor(Math.random() * images.length);
+				
+				const imageInfo = images[randomIndex].split(":");
+				const altText = imageInfo[0];
+				const fileName = imageInfo[1];
+
+				imgTag.src = "images/" + fileName;
+				imgTag.alt = alert(altText);
+			});
+		})
+
+		// $(function () {
+
+		// 	$("img").dblclick(function () {
+		// 		// 랜덤 변수 
+		// 		var result = Math.floor(Math.random() * (images.length - 1)) + 1;
+
+		// 		$("img").attr("src", "images/" + images[result].split(":")[1]);
+		// 		$("img").attr("alt", alert(images[result].split(":")[0]));
+		// 	});
+
+		// });
+
+	</script>
+</head>
+
+<body>
+	<p>
+		<img src="images/Desert.jpg" alt="사막" />
+	</p>
+</body>
+
+</html>
