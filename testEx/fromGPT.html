@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 코드형 심화 퀴즈</title>
+    <style>
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            background: #f5f8fb;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .quiz {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        pre {
+            background: #f0f0f0;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .options label {
+            display: block;
+            margin: 6px 0;
+        }
+
+        button {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .explanation {
+            display: none;
+            margin-top: 10px;
+            border-left: 4px solid #3498db;
+            background: #eef6ff;
+            padding: 10px;
+        }
+
+        input[type=text] {
+            padding: 6px;
+            border-radius: 5px;
+            border: 1px solid #bbb;
+            width: 50%;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>💻 JavaScript 코드 심화 퀴즈</h1>
+    <div id="quiz-container"></div>
+
+    <script>
+        const quizData = [
+            // ------------------- 객관식 -------------------
+            {
+                type: "mcq",
+                q: "1. 다음 코드의 출력 결과는?<br><pre>for(var i=0;i<3;i++){ setTimeout(()=>console.log(i),100); }</pre>",
+                options: ["0 1 2", "3 3 3", "0 1 2 (순서 랜덤)", "에러 발생"],
+                answer: 1,
+                explanation: "var는 함수 스코프이므로 반복이 끝난 후 i=3이 되어 3이 3번 출력됩니다."
+            },
+            {
+                type: "mcq",
+                q: "2. 다음 코드의 결과는?<br><pre>const obj = { value: 42 };<br>const copy = obj;<br>copy.value = 99;<br>console.log(obj.value);</pre>",
+                options: ["42", "99", "undefined", "에러"],
+                answer: 1,
+                explanation: "객체는 참조 타입이므로 copy가 수정되면 obj도 영향을 받습니다."
+            },
+            {
+                type: "mcq",
+                q: "3. 아래 코드의 결과는?<br><pre>console.log(typeof typeof 123);</pre>",
+                options: ["number", "string", "undefined", "object"],
+                answer: 1,
+                explanation: "typeof 123 → 'number'이고, typeof 'number' → 'string'."
+            },
+            {
+                type: "mcq",
+                q: "4. 다음 함수의 결과는?<br><pre>function foo(a,b=a+1){ return b; }<br>console.log(foo(3));</pre>",
+                options: ["3", "4", "NaN", "undefined"],
+                answer: 1,
+                explanation: "기본값 매개변수 b=a+1 → b=4가 됩니다."
+            },
+            {
+                type: "mcq",
+                q: "5. 아래 코드의 출력은?<br><pre>let a = [1,2,3];<br>let b = [...a];<br>b.push(4);<br>console.log(a.length);</pre>",
+                options: ["3", "4", "undefined", "에러"],
+                answer: 0,
+                explanation: "전개 연산자로 복사하면 별개의 배열이 되어 원본 a는 길이가 3입니다."
+            },
+            {
+                type: "mcq",
+                q: "6. 클로저(Closure)를 올바르게 설명한 것은?",
+                options: [
+                    "다른 함수 내부에서 선언된 함수를 즉시 실행하는 구조",
+                    "함수가 자신이 선언된 환경의 변수를 기억하는 것",
+                    "this를 변경하는 함수",
+                    "Promise와 관련된 개념"
+                ],
+                answer: 1,
+                explanation: "클로저는 함수가 생성될 때의 렉시컬 스코프를 기억하여 외부 변수에 접근할 수 있는 구조입니다."
+            },
+            {
+                type: "mcq",
+                q: "7. 다음 코드의 결과는?<br><pre>console.log([1,2,3].map(parseInt));</pre>",
+                options: ["[1, 2, 3]", "[1, NaN, NaN]", "[NaN, NaN, NaN]", "[1, NaN, 3]"],
+                answer: 1,
+                explanation: "map이 index도 전달하기 때문에 parseInt(1,0), parseInt(2,1), parseInt(3,2) → [1, NaN, NaN]"
+            },
+            {
+                type: "mcq",
+                q: "8. 다음 코드 실행 결과는?<br><pre>let x = 10;<br>function test(){ console.log(x); let x = 5; }<br>test();</pre>",
+                options: ["10", "5", "undefined", "ReferenceError"],
+                answer: 3,
+                explanation: "let은 TDZ(Temporal Dead Zone) 영역 때문에 선언 전 접근 시 ReferenceError 발생."
+            },
+            {
+                type: "mcq",
+                q: "9. 다음 Promise의 출력 순서를 올바르게 고르시오.<br><pre>console.log('A');<br>Promise.resolve().then(()=>console.log('B'));<br>console.log('C');</pre>",
+                options: ["A B C", "A C B", "B A C", "C B A"],
+                answer: 1,
+                explanation: "Promise 콜백은 마이크로태스크로, 동기 코드(A,C) 실행 후 B가 출력됩니다."
+            },
+            {
+                type: "mcq",
+                q: "10. 다음 코드 실행 후 출력은?<br><pre>let obj = {a:1, b:2};<br>for(let k in obj){ console.log(k); }</pre>",
+                options: ["1 2", "a b", "undefined undefined", "에러 발생"],
+                answer: 1,
+                explanation: "for...in은 객체의 key를 반복합니다 → 'a', 'b'."
+            },
+
+            // ------------------- 단답형 -------------------
+            {
+                type: "short",
+                q: "11. 자바스크립트에서 비동기 처리를 다루기 위한 내장 객체는?",
+                answer: "promise",
+                explanation: "Promise는 비동기 연산의 완료 또는 실패를 나타내는 객체입니다."
+            },
+            {
+                type: "short",
+                q: "12. 화살표 함수는 자신만의 this를 가지는가? (예/아니오)",
+                answer: "아니오",
+                explanation: "화살표 함수는 상위 스코프의 this를 그대로 사용합니다."
+            },
+            {
+                type: "short",
+                q: "13. 객체를 깊은 복사하기 위한 JSON 방법 두 가지 중 하나를 써보세요.",
+                answer: "json.parse(json.stringify",
+                explanation: "JSON.stringify로 직렬화 후 JSON.parse로 역직렬화하면 깊은 복사가 됩니다."
+            },
+            {
+                type: "short",
+                q: "14. const로 선언된 배열의 요소를 변경할 수 있는가? (예/아니오)",
+                answer: "예",
+                explanation: "const는 재할당은 불가능하지만, 내부 요소 수정은 가능합니다."
+            },
+            {
+                type: "short",
+                q: "15. try 블록에서 오류가 발생하지 않으면 catch 블록이 실행되는가? (예/아니오)",
+                answer: "아니오",
+                explanation: "catch 블록은 예외 발생 시에만 실행됩니다."
+            },
+            {
+                type: "short",
+                q: "16. JSON 문자열을 객체로 바꾸는 메서드는?",
+                answer: "json.parse",
+                explanation: "JSON.parse()는 문자열을 객체로 변환합니다."
+            },
+            {
+                type: "short",
+                q: "17. 배열의 첫 번째 요소를 제거하는 메서드는?",
+                answer: "shift",
+                explanation: "shift()는 배열 맨 앞 요소를 제거하고 반환합니다."
+            },
+            {
+                type: "short",
+                q: "18. 함수가 자신의 이름을 재귀적으로 호출할 수 있도록 하는 개념은?",
+                answer: "재귀",
+                explanation: "자기 자신을 호출하는 함수를 재귀 함수라 합니다."
+            },
+            {
+                type: "short",
+                q: "19. 문자열 'hello'를 대문자로 바꾸는 메서드는?",
+                answer: "toUpperCase",
+                explanation: "문자열.toUpperCase() → 'HELLO'."
+            },
+            {
+                type: "short",
+                q: "20. ES6에서 변수를 블록 단위로 선언할 때 사용하는 키워드는?",
+                answer: "let",
+                explanation: "let은 블록 스코프 변수를 선언할 때 사용됩니다."
+            }
+        ];
+
+        // ------------------- 퀴즈 렌더링 -------------------
+        const container = document.getElementById("quiz-container");
+
+        quizData.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.className = "quiz";
+
+            if (item.type === "mcq") {
+                div.innerHTML = `
+      <div class="question">${item.q}</div>
+      <div class="options">
+        ${item.options.map((opt, i) => `
+          <label><input type="radio" name="q${index}" value="${i}"> ${opt}</label>
+        `).join('')}
+      </div>
+      <button onclick="checkMCQ(${index})">정답 확인</button>
+      <div class="explanation" id="exp${index}">${item.explanation}</div>
+    `;
+            } else {
+                div.innerHTML = `
+      <div class="question">${item.q}</div>
+      <input type="text" id="short${index}" placeholder="정답 입력...">
+      <button onclick="checkShort(${index})">정답 확인</button>
+      <div class="explanation" id="exp${index}">${item.explanation}</div>
+    `;
+            }
+
+            container.appendChild(div);
+        });
+
+        // ------------------- 정답 확인 함수 -------------------
+        function checkMCQ(index) {
+            const selected = document.querySelector(`input[name='q${index}']:checked`);
+            const expDiv = document.getElementById(`exp${index}`);
+            if (!selected) return alert("답을 선택하세요!");
+            const correct = parseInt(selected.value) === quizData[index].answer;
+            expDiv.style.display = "block";
+            expDiv.style.borderLeftColor = correct ? "#27ae60" : "#e74c3c";
+            expDiv.innerHTML = (correct ? "✅ 정답입니다!<br>" : "❌ 오답입니다.<br>") + quizData[index].explanation;
+        }
+
+        function checkShort(index) {
+            const input = document.getElementById(`short${index}`);
+            const expDiv = document.getElementById(`exp${index}`);
+            const userAns = input.value.trim().toLowerCase();
+            const correctAns = quizData[index].answer.toLowerCase();
+            if (!userAns) return alert("답을 입력하세요!");
+            const correct = userAns.includes(correctAns);
+            expDiv.style.display = "block";
+            expDiv.style.borderLeftColor = correct ? "#27ae60" : "#e74c3c";
+            expDiv.innerHTML = (correct ? "✅ 정답입니다!<br>" : `❌ 오답입니다.<br>정답 예시: ${quizData[index].answer}<br>`) + quizData[index].explanation;
+        }
+    </script>
+
+</body>
+
+</html>

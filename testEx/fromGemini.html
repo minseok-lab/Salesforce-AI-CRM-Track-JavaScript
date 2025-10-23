@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 쪽지시험 학습 캔버스</title>
+    <!-- Tailwind CSS 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter 폰트 로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: #f4f7f6; /* 부드러운 배경색 */
+        }
+        .question-card {
+            background-color: #ffffff;
+            border-radius: 12px; /* 더 둥근 모서리 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+            overflow: hidden; /* 내부 요소가 모서리를 넘지 않도록 */
+        }
+        .question-title {
+            background-color: #f9fafb; /* 카드 헤더 배경색 */
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 24px;
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            color: #111827;
+        }
+        .question-content {
+            padding: 24px;
+        }
+        .sub-question {
+            margin-bottom: 20px;
+        }
+        .sub-question-text {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #374151;
+            background-color: #f9fafb;
+            padding: 10px 14px;
+            border-radius: 8px;
+            line-height: 1.6;
+            border: 1px solid #e5e7eb;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            margin-top: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.95rem;
+            color: #1f2937;
+            resize: vertical; /* 세로 크기 조절만 허용 */
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6; /* 포커스 시 파란색 테두리 */
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+        }
+        .save-button {
+            margin-top: 8px;
+            padding: 6px 14px;
+            background-color: #3b82f6; /* 파란색 */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .save-button:hover {
+            background-color: #2563eb;
+        }
+        .save-status {
+            font-size: 0.875rem; /* 14px */
+            color: #10b981; /* 초록색 */
+            margin-left: 10px;
+            visibility: hidden; /* 기본 숨김 */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto max-w-4xl px-4 py-12">
+        <h1 class="text-4xl font-bold text-center mb-10 text-gray-800">
+            JS 쪽지시험 학습 캔버스 📝
+        </h1>
+
+        <!-- 각 항목은 .question-card 로 분리됩니다 -->
+        
+        <!-- 1. 변수 비교 -->
+        <div class="question-card">
+            <h2 class="question-title">1. 변수에 숫자(정수), 숫자(문자) 넣고 크기 비교</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">1-1. `let a = 50;`, `let b = "50";`일 때, `a == b`의 결과와 `a === b`의 결과를 예측하고 그 이유를 설명해 보세요.</p>
+                    <textarea id="q-1-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-1-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">1-2. `let num1 = 100;`, `let strNum2 = "20";`일 때, `num1 > strNum2`의 결과가 `true`가 나오는 이유를 설명해 보세요.</p>
+                    <textarea id="q-1-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-1-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">1-3. `let x = "10";`, `let y = "010";`일 때, `x == y`의 결과를 예측해 보세요.</p>
+                    <textarea id="q-1-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-1-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">1-4. `let val1 = 0;`, `let val2 = false;`일 때, `val1 == val2`의 결과와 `val1 === val2`의 결과를 예측해 보세요.</p>
+                    <textarea id="q-1-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-1-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">1-5. `let strNum = "150";`, `let num = 100;` 변수 두 개를 선언하고, `strNum`을 숫자(number) 타입으로 변환하여 `num`보다 큰지 비교하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-1-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-1-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. while 반복문 -->
+        <div class="question-card">
+            <h2 class="question-title">2. while 반복문 사용</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">2-1. 1부터 10까지의 합을 `while`문을 사용하여 계산하고 출력하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-2-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-2-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">2-2. `while`문을 사용하여 10부터 1까지 숫자를 거꾸로 출력해 보세요.</p>
+                    <textarea id="q-2-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-2-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">2-3. 100보다 작은 5의 배수(5, 10, 15...)를 `while`문을 사용해 출력하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-2-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-2-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">2-4. `while(true)`를 사용한 무한 루프를 만들고, `count` 변수가 10이 되면 `break` 키워드를 사용해 루프를 탈출하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-2-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-2-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">2-5. 1부터 30까지의 숫자 중 짝수만 출력하는 `while`문을 작성해 보세요. (힌트: `continue` 키워드를 사용할 수 있습니다.)</p>
+                    <textarea id="q-2-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-2-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 배열.shift() -->
+        <div class="question-card">
+            <h2 class="question-title">3. 배열.shift()</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">3-1. `let seasons = ["봄", "여름", "가을", "겨울"];` 배열이 있습니다. `shift()`를 호출한 후 `seasons` 배열에 남은 요소를 출력해 보세요.</p>
+                    <textarea id="q-3-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-3-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">3-2. `let numbers = [10, 20, 30];` 배열에 `shift()`를 사용했을 때 반환되는(리턴되는) 값은 무엇인지 예측해 보세요.</p>
+                    <textarea id="q-3-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-3-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">3-3. 빈 배열 `let emptyArr = [];`에 `shift()`를 호출하면 어떤 값이 반환되는지 예측해 보세요.</p>
+                    <textarea id="q-3-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-3-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">3-4. `let colors = ["red", "green", "blue"];` 배열의 첫 번째 요소를 `shift()`로 제거하고, 제거된 요소를 `removedColor` 변수에 저장한 뒤 두 변수를 모두 출력하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-3-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-3-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">3-5. `shift()`와 반대로 배열의 맨 앞에 요소를 추가하는 메서드는 무엇인지 찾아보고, `let arr = [2, 3];`에 1을 추가하여 `[1, 2, 3]`이 되도록 만들어 보세요.</p>
+                    <textarea id="q-3-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-3-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4. 객체 생성 방법 -->
+        <div class="question-card">
+            <h2 class="question-title">4. 객체 생성 방법</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">4-1. '객체 리터럴' 방식을 사용하여 `name`은 "자바스크립트", `level`은 1인 `subject` 객체를 생성해 보세요.</p>
+                    <textarea id="q-4-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-4-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">4-2. `Car`라는 이름의 '생성자 함수'를 만드세요. 이 함수는 `brand`와 `color`를 매개변수로 받아 객체를 초기화해야 합니다.</p>
+                    <textarea id="q-4-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-4-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">4-3. 위 2번에서 만든 `Car` 생성자 함수를 사용하여 "현대", "흰색" 값을 가진 `myCar` 인스턴스(객체)를 생성해 보세요.</p>
+                    <textarea id="q-4-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-4-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">4-4. `new Object()`를 사용하여 빈 `person` 객체를 생성한 후, `person.name = "김철수";`, `person.age = 25;`와 같이 속성을 추가해 보세요.</p>
+                    <textarea id="q-4-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-4-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">4-5. `computer` 객체를 '객체 리터럴'로 생성하되, 속성 중 하나로 `calculate`라는 이름의 메서드(함수)를 포함시켜 보세요. (예: `calculate: function() { console.log("계산 중..."); }`)</p>
+                    <textarea id="q-4-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-4-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. prototype 의 생성자 -->
+        <div class="question-card">
+            <h2 class="question-title">5. prototype 의 생성자</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">5-1. `function Animal(name) { this.name = name; }` 생성자 함수가 있습니다. `Animal.prototype.constructor === Animal`의 결과를 예측해 보세요.</p>
+                    <textarea id="q-5-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-5-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">5-2. `let cat = new Animal("나비");` 객체를 생성했습니다. `cat.constructor === Animal`의 결과를 예측해 보세요.</p>
+                    <textarea id="q-5-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-5-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">5-3. `Animal.prototype` 객체에 `species`라는 속성을 추가했습니다. `cat.species`의 값은 무엇일까요?</p>
+                    <textarea id="q-5-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-5-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">5-4. `Animal.prototype.constructor`를 `null`로 변경하면 어떤 문제가 발생할 수 있을지 설명해 보세요.</p>
+                    <textarea id="q-5-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-5-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">5-5. 객체 `cat`이 `Animal` 생성자의 인스턴스인지 확인하는 `instanceof` 연산자를 사용하여 코드를 작성해 보세요. (예: `console.log(cat instanceof Animal);`)</p>
+                    <textarea id="q-5-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-5-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 6. prototype 에 함수 추가 -->
+        <div class="question-card">
+            <h2 class="question-title">6. prototype 에 함수(메서드) 추가하는 방법</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">6-1. `Student`라는 생성자 함수를 만드세요. (속성은 `name` 하나만 받으세요.)</p>
+                    <textarea id="q-6-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-6-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">6-2. `Student.prototype`에 `study`라는 메서드를 추가하세요. 이 메서드는 "공부합니다."라는 메시지를 콘솔에 출력해야 합니다.</p>
+                    <textarea id="q-6-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-6-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">6-3. `Student` 생성자로 `s1 = new Student("영희");` 객체를 만드세요.</p>
+                    <textarea id="q-6-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-6-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">6-4. `s1.study();`를 호출하여 2번에서 추가한 메서드가 잘 동작하는지 확인해 보세요.</p>
+                    <textarea id="q-6-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-6-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">6-5. `s1` 객체 자체에 `study` 메서드가 있는지, 아니면 `Student.prototype`에 있는지 확인하는 방법을 설명해 보세요. (힌트: `hasOwnProperty`)</p>
+                    <textarea id="q-6-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-6-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. 변수에 null -->
+        <div class="question-card">
+            <h2 class="question-title">7. 변수에 null 을 넣을 수 있다</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">7-1. `let myVar;`를 선언만 하고 값을 할당하지 않았을 때 `myVar`의 값을 출력해 보세요.</p>
+                    <textarea id="q-7-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-7-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">7-2. `let user = "홍길동";`으로 선언된 변수에 `null`을 재할당하고 `user` 변수의 값을 출력해 보세요.</p>
+                    <textarea id="q-7-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-7-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">7-3. `null`의 `typeof`를 확인하는 코드를 작성하고, 그 결과를 말해보세요. (이 결과가 나오는 이유도 설명해 보면 좋습니다!)</p>
+                    <textarea id="q-7-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-7-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">7-4. `null`과 `undefined`가 `==` 연산자로 비교될 때와 `===` 연산자로 비교될 때의 결과를 각각 예측해 보세요.</p>
+                    <textarea id="q-7-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-7-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">7-5. 함수가 객체를 반환해야 하는데, 적절한 객체를 찾지 못했을 때 `null`을 반환하는 예시 함수를 간단히 작성해 보세요.</p>
+                    <textarea id="q-7-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-7-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. 객체 복사 -->
+        <div class="question-card">
+            <h2 class="question-title">8. 객체 복사 후 객체 멤버변수 값 변경</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">8-1. `let user1 = { name: "Alice", age: 20 };` 객체가 있습니다. `let user2 = user1;` 코드를 실행한 후, `user2.name = "Bob";`으로 변경했습니다. `user1.name`의 값은 무엇일까요? 그 이유도 설명해 보세요. (참조)</p>
+                    <textarea id="q-8-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-8-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">8-2. '얕은 복사'를 사용하여 `user1`을 `user3`로 복사하는 코드를 작성해 보세요. (힌트: `...` 스프레드 연산자 또는 `Object.assign()`)</p>
+                    <textarea id="q-8-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-8-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">8-3. 2번에서 만든 `user3`의 `age`를 `30`으로 변경했을 때, `user1.age`의 값은 무엇일까요?</p>
+                    <textarea id="q-8-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-8-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">8-4. `let team1 = { name: "A팀", members: ["철수", "영희"] };` 객체가 있습니다. `let team2 = { ...team1 };` (얕은 복사) 코드를 실행했습니다.</p>
+                    <textarea id="q-8-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-8-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">8-5. 4번 상황에서 `team2.members.push("민수");` 코드를 실행하면 `team1.members`의 값은 어떻게 될까요? 그 이유를 '얕은 복사'와 '깊은 복사'의 차이와 관련지어 설명해 보세요.</p>
+                    <textarea id="q-8-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-8-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. JSON 형식 체크 -->
+        <div class="question-card">
+            <h2 class="question-title">9. 유효한 JSON 형식 체크</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">9-1. `let str1 = '{"name": "test"}';` 문자열이 유효한 JSON인지 `try...catch`와 `JSON.parse()`를 사용해 확인하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-9-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-9-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">9-2. `let str2 = "{name: 'test'}";` (키와 값에 작은따옴표 사용) 문자열이 유효한 JSON인지 예측하고, 1번에서 만든 코드로 확인해 보세요.</p>
+                    <textarea id="q-9-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-9-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">9-3. `let str3 = '{"count": 10, }';` (마지막 속성 뒤에 콤마) 문자열이 유효한 JSON인지 예측하고 확인해 보세요.</p>
+                    <textarea id="q-9-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-9-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">9-4. 유효한 JSON 문자열의 **두 가지 주요 규칙**을 설명해 보세요. (힌트: 키(key)와 문자열(string) 값)</p>
+                    <textarea id="q-9-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-9-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">9-5. `let str4 = '"Just a string"';` (단순 문자열)이 유효한 JSON인지 예측하고 확인해 보세요.</p>
+                    <textarea id="q-9-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-9-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. JSON.parse() -->
+        <div class="question-card">
+            <h2 class="question-title">10. JSON.parse() 사용법</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">10-1. `let jsonStr = '{"id": 1, "product": "노트북"}';` 문자열을 `JSON.parse()`를 사용하여 자바스크립트 객체로 변환하고, `product` 속성값을 출력해 보세요.</p>
+                    <textarea id="q-10-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-10-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">10-2. `let jsonArrStr = '[10, 20, 30]';` 문자열을 `JSON.parse()`로 변환한 후, 변환된 배열의 두 번째 요소(20)를 출력해 보세요.</p>
+                    <textarea id="q-10-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-10-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">10-3. `let invalidJson = "{'key': 'value'}";` 를 `JSON.parse()`로 변환하려고 시도할 때 어떤 일이 발생하는지 설명해 보세요.</p>
+                    <textarea id="q-10-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-10-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">10-4. 서버로부터 `{"user": {"name": "이순신", "level": 99}}` 형태의 JSON 문자열을 받았다고 가정하고, 이를 파싱하여 `name` 값("이순신")에 접근하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-10-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-10-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">10-5. `JSON.parse()`의 반대, 즉 자바스크립트 객체를 JSON 문자열로 변환하는 메서드는 무엇인지 찾아보고, `let obj = { score: 100 };`를 JSON 문자열로 변환해 보세요.</p>
+                    <textarea id="q-10-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-10-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11, 12. 셀렉터 선택 -->
+        <div class="question-card">
+            <h2 class="question-title">11, 12. 순수자바스크립트로 셀렉터 선택 방법</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">11-1. (HTML 파일이 있다고 가정) HTML 문서에서 `id`가 "title"인 요소를 선택하는 자바스크립트 코드를 작성해 보세요.</p>
+                    <textarea id="q-11-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-11-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">11-2. HTML 문서에서 `class`가 "content"인 **모든** 요소를 선택하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-11-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-11-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">11-3. 2번에서 선택한 요소들 중 **첫 번째** 요소의 텍스트 내용(`textContent`)을 "첫 번째 내용"으로 변경하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-11-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-11-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">11-4. `querySelector`를 사용하여 `div` 태그이면서 `class`가 "item"인 **첫 번째** 요소를 선택하는 코드를 작성해 보세요. (CSS 셀렉터: `div.item`)</p>
+                    <textarea id="q-11-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-11-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">11-5. `querySelectorAll`을 사용하여 `&lt;p&gt;` 태그(p-tag)를 **모두** 선택하고, `for...of` 문을 사용해 각 요소의 텍스트를 콘솔에 출력하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-11-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-11-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13. null 과 undefined -->
+        <div class="question-card">
+            <h2 class="question-title">13. null 과 undefined 의 구분</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">13-1. 변수를 선언만 하고 값을 할당하지 않았을 때, 그 변수의 타입은 무엇이며 값은 무엇인지 코드로 확인해 보세요.</p>
+                    <textarea id="q-13-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-13-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">13-2. "값이 없음"을 의도적으로 명시하기 위해 변수에 할당해야 하는 값은 `null`과 `undefined` 중 무엇인지 설명해 보세요.</p>
+                    <textarea id="q-13-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-13-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">13-3. `typeof null`의 결과가 "object"인 이유에 대해 간단히 설명해 보세요.</p>
+                    <textarea id="q-13-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-13-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">13-4. `console.log(null == undefined);`의 결과를 예측해 보세요.</p>
+                    <textarea id="q-13-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-13-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">13-5. `console.log(null === undefined);`의 결과를 예측하고, 4번의 결과와 다른 이유를 설명해 보세요.</p>
+                    <textarea id="q-13-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-13-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14. const 의 특징 -->
+        <div class="question-card">
+            <h2 class="question-title">14. const 의 특징</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">14-1. `const`로 선언한 변수에 새로운 값을 재할당하려고 할 때 어떤 에러가 발생하는지 코드로 보여주세요.</p>
+                    <textarea id="q-14-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-14-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">14-2. `const`로 선언한 변수는 반드시 선언과 동시에 초기화해야 합니다. 이를 어겼을 때 발생하는 에러를 코드로 보여주세요.</p>
+                    <textarea id="q-14-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-14-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">14-3. `const`로 선언된 객체 `const person = { name: "철수" };`가 있습니다. `person.name = "영희";`로 속성을 변경하는 것이 가능한가요? 가능하다면 그 이유를 설명해 보세요.</p>
+                    <textarea id="q-14-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-14-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">14-4. 3번의 `person` 객체를 `person = { age: 30 };`과 같이 새로운 객체로 재할당하는 것이 가능한가요? 불가능하다면 그 이유를 설명해 보세요.</p>
+                    <textarea id="q-14-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-14-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">14-5. `if (true) { const blockVar = 10; }` 코드 블록 밖에서 `blockVar`에 접근하려고 할 때 발생하는 에러를 통해 `const`의 스코프(범위) 특징을 설명해 보세요.</p>
+                    <textarea id="q-14-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-14-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15. 배열 요소 접근 -->
+        <div class="question-card">
+            <h2 class="question-title">15. 배열의 특정 요소에 접근하는 방법</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">15-1. `let arr = [10, 20, 30, 40, 50];` 배열에서 3번째 요소(30)에 접근하여 출력하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-15-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-15-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">15-2. 배열의 인덱스는 몇부터 시작하는지 설명해 보세요.</p>
+                    <textarea id="q-15-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-15-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">15-3. `let fruits = ["사과", "바나나", "딸기"];` 배열의 **마지막 요소**("딸기")에 `length` 속성을 사용하여 접근하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-15-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-15-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">15-4. `let arr = [1, 2, 3];` 배열의 5번째 요소(`arr[4]`)에 접근하면 어떤 값이 출력되는지 예측해 보세요.</p>
+                    <textarea id="q-15-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-15-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">15-5. 4번의 `arr[4]`에 `5`라는 값을 할당한 후 `arr` 배열 전체를 출력해 보세요. 어떤 변화가 생겼는지 설명해 보세요.</p>
+                    <textarea id="q-15-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-15-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16. 배열.pop() -->
+        <div class="question-card">
+            <h2 class="question-title">16. 배열.pop()</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">16-1. `let numbers = [1, 2, 3, 4, 5];` 배열에 `pop()`을 호출한 후, `numbers` 배열에 남은 요소를 출력해 보세요.</p>
+                    <textarea id="q-16-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-16-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">16-2. `let stack = ["문서1", "문서2", "문서3"];` 배열에 `pop()`을 사용했을 때 반환되는(리턴되는) 값은 무엇인지 예측해 보세요.</p>
+                    <textarea id="q-16-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-16-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">16-3. 빈 배열 `let emptyArr = [];`에 `pop()`을 호출하면 어떤 값이 반환되는지 예측해 보세요.</p>
+                    <textarea id="q-16-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-16-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">16-4. `let colors = ["red", "green", "blue"];` 배열의 마지막 요소를 `pop()`으로 제거하고, 제거된 요소를 `lastColor` 변수에 저장한 뒤 두 변수를 모두 출력하는 코드를 작성해 보세요.</p>
+                    <textarea id="q-16-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-16-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">16-5. `pop()`과 반대로 배열의 맨 뒤에 요소를 추가하는 메서드는 무엇인지 찾아보고, `let arr = [1, 2];`에 3을 추가하여 `[1, 2, 3]`이 되도록 만들어 보세요.</p>
+                    <textarea id="q-16-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-16-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 17. arrow function -->
+        <div class="question-card">
+            <h2 class="question-title">17. arrow function (화살표 함수) 정의 방법</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">17-1. `function add(a, b) { return a + b; }` 일반 함수를 화살표 함수로 변환하여 `arrowAdd` 변수에 할당해 보세요.</p>
+                    <textarea id="q-17-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-17-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">17-2. 매개변수가 하나인 `function print(msg) { console.log(msg); }` 함수를 화살표 함수로 변환해 보세요. (매개변수 괄호는 생략 가능합니다.)</p>
+                    <textarea id="q-17-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-17-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">17-3. `function getName() { return "JavaScript"; }` 함수를 화살표 함수로 변환하되, `{}`와 `return`을 생략한 '한 줄'짜리 코드로 작성해 보세요.</p>
+                    <textarea id="q-17-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-17-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">17-4. `let numbers = [1, 2, 3, 4];` 배열의 `map` 메서드를 사용하여, 각 요소를 제곱하는 화살표 함수를 작성해 보세요. (예: `numbers.map(...)`)</p>
+                    <textarea id="q-17-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-17-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">17-5. 화살표 함수와 일반 `function`의 가장 큰 차이점 중 하나인 `this` 바인딩에 대해 간단히 설명해 보세요.</p>
+                    <textarea id="q-17-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-17-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 18. for .. of -->
+        <div class="question-card">
+            <h2 class="question-title">18. for .. of 사용</h2>
+            <div class="question-content">
+                <div class="sub-question">
+                    <p class="sub-question-text">18-1. `let scores = [100, 80, 95];` 배열을 `for...of` 문을 사용해 순회하면서 각 점수를 콘솔에 출력해 보세요.</p>
+                    <textarea id="q-18-1" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-18-1', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">18-2. `let myName = "Alice";` 문자열을 `for...of` 문을 사용해 순회하면서 각 문자(알파벳)를 콘솔에 출력해 보세요.</p>
+                    <textarea id="q-18-2" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-18-2', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">18-3. `for...in`과 `for...of`가 배열을 순회할 때 어떤 차이가 있는지 코드를 작성하여 비교 설명해 보세요.</p>
+                    <textarea id="q-18-3" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-18-3', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">18-4. `for...of` 문은 '반복 가능한(iterable)' 객체에만 사용할 수 있습니다. `let obj = { a: 1, b: 2 };`와 같은 일반 객체에 `for...of`를 사용하면 어떻게 되는지 예측해 보세요.</p>
+                    <textarea id="q-18-4" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-18-4', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+                <div class="sub-question">
+                    <p class="sub-question-text">18-5. `let numbers = [10, 20, 30];` 배열의 '값'이 아닌 '인덱스'와 '값'을 함께 출력하고 싶을 때 `for...of`와 `entries()` 메서드를 조합하여 사용해 보세요. (힌트: `for (let [index, value] of numbers.entries()) { ... }`)</p>
+                    <textarea id="q-18-5" placeholder="답변을 입력하세요..."></textarea>
+                    <button class="save-button" onclick="saveAnswer('q-18-5', this)">저장</button>
+                    <span class="save-status">저장됨!</span>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+
+    <script>
+        // 페이지가 로드되었을 때 저장된 답변을 불러오는 함수
+        document.addEventListener('DOMContentLoaded', () => {
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(textarea => {
+                const savedValue = localStorage.getItem(textarea.id);
+                if (savedValue) {
+                    textarea.value = savedValue;
+                }
+            });
+        });
+
+        // 답변을 localStorage에 저장하는 함수
+        function saveAnswer(id, button) {
+            const textarea = document.getElementById(id);
+            localStorage.setItem(id, textarea.value);
+
+            // "저장됨!" 메시지 표시
+            const statusMessage = button.nextElementSibling;
+            statusMessage.style.visibility = 'visible';
+            statusMessage.style.opacity = '1';
+
+            // 2초 후에 메시지 숨기기
+            setTimeout(() => {
+                statusMessage.style.opacity = '0';
+                setTimeout(() => {
+                    statusMessage.style.visibility = 'hidden';
+                }, 300);
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
